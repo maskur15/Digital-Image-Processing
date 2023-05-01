@@ -15,3 +15,9 @@
                                    shear_range = 0.2,
                                    zoom_range = 0.2,
                                    horizontal_flip = True)
+
+   train_datagen = ImageDataGenerator(rescale=1.0/255,rotation_range=30,
+                                     width_shift_range=.3,
+                                     shear_range=.3,
+                                     zoom_range=0.2,
+                                     fill_mode='nearest',horizontal_flip=True,)
