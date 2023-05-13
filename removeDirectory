@@ -1,0 +1,3 @@
+ import shutil
+ shutil.rmtree('/content/tmp')
+#this command will remove the tmp directory and all its subdirectory whether it contains file or not 
