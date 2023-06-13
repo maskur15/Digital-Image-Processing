@@ -1,0 +1,28 @@
+#augment the data set and create new images 
+import cv2
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+train_datagen = ImageDataGenerator(
+    rotation_range = 15,
+    horizontal_flip = True,
+    width_shift_range=0.1,
+    height_shift_range=0.1,
+    fill_mode = 'nearest')
+img_dir = ['angry','disgust','happy','worry']
+for dir in img_dir:
+    
+  img_path =  os.path.join('/content/temp/customEmotion/cusotmEm',dir)
+  c=0
+  for img in os.listdir(img_path):
+    img=np.expand_dims((cv2.imread(os.path.join(img_path,img))),0)
+    c+=1
+    train_datagen.fit(img)
+
+    for x,val in zip(
+        train_datagen.flow(
+        img,
+        save_to_dir= os.path.join('/content/drive/MyDrive/Colab Notebooks/image-processing/datasets/augment',dir),
+        save_prefix = str(c)+'aug',
+        save_format= 'png'
+    ), range(5)):
+      pass  
+  print(c)
